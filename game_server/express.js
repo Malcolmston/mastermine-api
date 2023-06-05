@@ -1,5 +1,5 @@
 const {generate_secret, hint} = require("../game_helper/code.js");
-const {Game_create, Game_addMove} = require("./game_server/seqilize.js")
+const {Game_create, Game_addMove} = require("../game_server/seqilize.js")
 
 var secret;
 
@@ -14,6 +14,7 @@ async function takeGuess (req, res) {
     let {guess, name} = req.params
     guess =  guess.split(",")
 
+	console.log(guess, name, secret)
     let hintVar;
     try {
         hintVar = hint(guess,secret )  
@@ -28,7 +29,7 @@ async function takeGuess (req, res) {
         return  await Game_addMove(name, guess)
 
     } catch( error ){
-        console.error( error )
+       // console.error( error )
         res.status(412).json({
             guess: guess,
             message: error.message,
@@ -50,6 +51,7 @@ async function takeGuess (req, res) {
 async function newGame (req, res) {
     let { name} = req.body
 
+	console.log( name )
     try {
         let p =  await Game_create(name)
 
@@ -67,7 +69,6 @@ async function newGame (req, res) {
 
     } catch( error ){
         res.status(406).json({
-            guess: guess,
             message: error.message,
             next: `something went worng`
         })

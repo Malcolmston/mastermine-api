@@ -60,7 +60,7 @@ const Game = sequelize.define(
      */
       async function nameExsist(name){
         let a = await Game.findOne({where: {
-            gameName: gameNnft
+            gameName: name
         }})
 
         return a == null ? false : true
