@@ -113,6 +113,14 @@ const Game = sequelize.define(
         return s.length == 0 ? undefined : s
     }
 
+    async function Game_Game (gameName) {
+        console.log( (await Play.getGames()))
+        if( !(await nameExsist(gameName)) ) return;
+
+        
+    } 
+    
+
    // Game_create("a").then( (x) => {
       //  console.log( x )
         

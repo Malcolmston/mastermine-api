@@ -79,4 +79,4 @@ async function newGame (req, res) {
 
 
 
-module.exports = {takeGuess, newGame}
+module.exports = {takeGuess, newGame, secret}
